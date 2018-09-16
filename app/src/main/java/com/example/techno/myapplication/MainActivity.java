@@ -32,7 +32,7 @@ private View master_view;
         ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.rootLayout);
         ConstraintSet set = new ConstraintSet();
         set.clone(layout);
-        for(int i = 0; i<10; i++) {
+        for(int i = 0; i<4; i++) {
             //Button 1:
             Button button = new Button(this);
             button.setText("Hello"+i);
@@ -40,8 +40,12 @@ private View master_view;
             button.setId(i+100);
             layout.addView(button);
         set.connect(button.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
-        set.connect(button.getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
-        set.connect(button.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
+        //set.connect(button.getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
+            if (i==0) {
+                set.connect(button.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
+            }else{
+                set.connect(button.getId(),ConstraintSet.LEFT,(i-1)+100,ConstraintSet.RIGHT,0);
+            }
             set.constrainHeight(button.getId(), 200);
             set.constrainWidth(button.getId(), ConstraintSet.MATCH_CONSTRAINT);
            // set.constrainWidth(secondButton.getId(), ConstraintSet.MATCH_CONSTRAINT);
